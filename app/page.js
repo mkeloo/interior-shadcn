@@ -1,5 +1,9 @@
-import Image from 'next/image';
+import HeroSection from '@/components/HeroSection';
 
 export default function Home() {
-  return <main>Interior Design</main>;
+  return (
+    <>
+      <HeroSection />
+    </>
+  );
 }
