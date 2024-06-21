@@ -9,7 +9,7 @@ export default function Home() {
       <HeroSection />
       <CompanySection />
       <AboutSection />
-      <CatalogSection />
+      <CatalogSection />x
     </>
   );
 }
