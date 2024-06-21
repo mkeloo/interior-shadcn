@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ThemeToggler from './ThemeToggler';
+import { usePathname } from 'next/navigation';
 
 // Components
 import Logo from './Logo';
@@ -9,8 +10,28 @@ import Navbar from './Navbar';
 import MobileNavbar from './MobileNavbar';
 
 const Header = () => {
+  const [header, setHeader] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const scrollYPos = window.addEventListener('scroll', () => {
+      window.scrollY > 100 ? setHeader(true) : setHeader(false);
+    });
+
+    // remove Events
+    return () => window.removeEventListener('scroll', scrollYPos);
+  }, []);
+
   return (
-    <header>
+    <header
+      className={`${
+        header
+          ? 'py-4 bg-tertiary shadow-lg dark:bg-accent'
+          : 'py-6 dark:bg-transparent'
+      } sticky top-0 z-30 transition-all duration-300 ${
+        pathname === '/' && 'bg-[#fff]'
+      }`}
+    >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <Logo />
